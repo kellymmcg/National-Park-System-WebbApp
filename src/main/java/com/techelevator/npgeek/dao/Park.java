@@ -66,6 +66,9 @@ public class Park {
 	public String getParkCode() {
 		return parkCode;
 	}
+	public String getParkCodeLowerCase() {
+		return parkCode.toLowerCase();
+	}
 	public String getParkName() {
 		return parkName;
 	}

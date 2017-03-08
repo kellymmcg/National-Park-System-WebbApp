@@ -8,8 +8,9 @@
 <body>
 <header>
     	<c:url value="/" var="homePageHref" />
+    	<c:url value="/img/logo.png" var="logoImage"/>
         <a href="${homePageHref}">
-        		<img src="${logoSrc}" alt="National Park Geek logo" />
+        		<img src="${logoImage}" alt="National Park Geek logo"  height="25%" width="25%" />
         </a>
         <h1>History Geek</h1>
 </header>

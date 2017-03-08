@@ -23,13 +23,13 @@ public class JDBCpark implements ParkDAO {
 	@Override
 	public List<Park> getAllParks() {
 		List<Park> parks = new ArrayList<>();
-		String sqlSelectPark = "SELECT *" + "FROM park";
+		String sqlSelectPark = "SELECT * " + "FROM park";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectPark);
 		while (results.next()) {
 
 			parks.add(mapRowToPark(results));
 		}
-		return null;
+		return parks;
 	}
 
 	private Park mapRowToPark(SqlRowSet row) {
