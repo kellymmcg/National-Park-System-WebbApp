@@ -17,6 +17,52 @@ public class Park {
 	private int numberOfAnimalSpecies;
 	private String parkCode;
 	
+	
+	public void setParkName(String parkName) {
+		this.parkName = parkName;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public void setAcreage(int acreage) {
+		this.acreage = acreage;
+	}
+	public void setElevation(int elevation) {
+		this.elevation = elevation;
+	}
+	public void setMilesOfTrail(double milesOfTrail) {
+		this.milesOfTrail = milesOfTrail;
+	}
+	public void setNumberOfCampsites(int numberOfCampsites) {
+		this.numberOfCampsites = numberOfCampsites;
+	}
+	public void setClimate(String climate) {
+		this.climate = climate;
+	}
+	public void setYearFounded(int yearFounded) {
+		this.yearFounded = yearFounded;
+	}
+	public void setAnnualVisitorCount(int annualVisitorCount) {
+		this.annualVisitorCount = annualVisitorCount;
+	}
+	public void setQuote(String quote) {
+		this.quote = quote;
+	}
+	public void setQuoteSource(String quoteSource) {
+		this.quoteSource = quoteSource;
+	}
+	public void setDescription(String description) {
+		Description = description;
+	}
+	public void setEntryFee(int entryFee) {
+		this.entryFee = entryFee;
+	}
+	public void setNumberOfAnimalSpecies(int numberOfAnimalSpecies) {
+		this.numberOfAnimalSpecies = numberOfAnimalSpecies;
+	}
+	public void setParkCode(String parkCode) {
+		this.parkCode = parkCode;
+	}
 	public String getParkCode() {
 		return parkCode;
 	}
