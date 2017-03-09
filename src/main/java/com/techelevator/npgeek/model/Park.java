@@ -1,4 +1,4 @@
-package com.techelevator.npgeek.dao;
+package com.techelevator.npgeek.model;
 
 public class Park {
 	private String parkName;
@@ -12,7 +12,7 @@ public class Park {
 	private int annualVisitorCount;
 	private String quote;
 	private String quoteSource;
-	private String Description;
+	private String description;
 	private int entryFee;
 	private int numberOfAnimalSpecies;
 	private String parkCode;
@@ -52,7 +52,7 @@ public class Park {
 		this.quoteSource = quoteSource;
 	}
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 	public void setEntryFee(int entryFee) {
 		this.entryFee = entryFee;
@@ -103,7 +103,7 @@ public class Park {
 		return quoteSource;
 	}
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 	public int getEntryFee() {
 		return entryFee;
