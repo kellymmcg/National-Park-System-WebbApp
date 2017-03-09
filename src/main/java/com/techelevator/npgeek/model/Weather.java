@@ -43,10 +43,18 @@ public class Weather {
 	public int getLow() {
 		return low;
 	}
+	public int getLowInCelsius() {
+		low = (low - 32) * 5/9; 
+		return low;
+	}
 	public void setLow(int low) {
 		this.low = low;
 	}
 	public int getHigh() {
+		return high;
+	}
+	public int getHighInCelsius() {
+		high = (high - 32) * 5/9;
 		return high;
 	}
 	public void setHigh(int high) {

@@ -2,22 +2,20 @@ package com.techelevator.npgeek;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.gargoylesoftware.htmlunit.javascript.host.fetch.Request;
 import com.techelevator.npgeek.dao.ParkDAO;
 import com.techelevator.npgeek.dao.WeatherDAO;
 import com.techelevator.npgeek.model.Park;
 import com.techelevator.npgeek.model.Weather;
 
 @Controller
+@SessionAttributes(value={"park", "weather","parkCode"})
 public class npGeekController {
 
 	private ParkDAO parkDAO;
@@ -36,13 +34,23 @@ public class npGeekController {
 	}
 	
 	@RequestMapping ("/parkDetails") 
-	public String displayParkDetails(@RequestParam String parkCode,ModelMap modelMap) {
+	public String displayParkDetails(@RequestParam (value="Temp", required=false)String temp,
+														@RequestParam (value="parkCode", required=false)String parkCode,
+														ModelMap modelMap) {
 		Park park = parkDAO.getParkByCode(parkCode);
 		List<Weather> weather = weatherDAO.getForecastFromParkCode(parkCode);
-		modelMap.addAttribute(park);
+		if (temp == null) {
+		temp = "Fahrenheit";	
+		}else if (temp == "Celcius"){
+			temp = "Celcius";
+		}else if (temp == "Fahrenheit"){
+			temp = "Fahrenheit";
+		}
+		modelMap.addAttribute("Temp", temp);
+		modelMap.addAttribute("park", park);
+		modelMap.addAttribute("parkCode", parkCode);
 		modelMap.addAttribute("weather", weather);
 		return "parkDetails";
-	}
-	
+	}	
 	
 }
