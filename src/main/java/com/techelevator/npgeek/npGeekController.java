@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.npgeek.dao.ParkDAO;
+import com.techelevator.npgeek.dao.SurveyDAO;
 import com.techelevator.npgeek.dao.WeatherDAO;
 import com.techelevator.npgeek.model.Park;
+import com.techelevator.npgeek.model.Survey;
 import com.techelevator.npgeek.model.Weather;
 
 @Controller
@@ -20,11 +23,13 @@ public class npGeekController {
 
 	private ParkDAO parkDAO;
 	private WeatherDAO weatherDAO;
+	private SurveyDAO surveyDAO;
 
 	@Autowired
-	public npGeekController(ParkDAO parkDAO, WeatherDAO weatherDAO) {
+	public npGeekController(ParkDAO parkDAO, WeatherDAO weatherDAO, SurveyDAO surveyDAO) {
 		this.parkDAO = parkDAO;
 		this.weatherDAO = weatherDAO;
+		this.surveyDAO = surveyDAO;
 	}
 	
 	@RequestMapping ("/")
@@ -53,4 +58,19 @@ public class npGeekController {
 		return "parkDetails";
 	}	
 	
+	@RequestMapping(path="/surveyInputPage", method=RequestMethod.GET)
+	public String completeSurvey(ModelMap modelMap) {
+	return "/surveyInputPage";
+	}
+	
+	@RequestMapping(path="/surveyInputPage", method=RequestMethod.POST)
+	public String viewSurvey(@RequestParam String parkCode,
+											@RequestParam String emailAddress,
+											@RequestParam String state,
+											@RequestParam String activityLevel,
+											ModelMap modelMap) {
+		surveyDAO.setSurveyInformation( parkCode,  emailAddress,  state,  activityLevel);
+		
+		return "redirect:/surveyResultsPage";
+	}
 }
