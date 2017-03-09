@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>National Park Geek</title>
+<title>Welcome to National Park Geek!</title>
 </head>
 <body>
 <header>
@@ -12,7 +12,7 @@
         <a href="${homePageHref}">
         		<img src="${logoImage}" alt="National Park Geek logo"  height="25%" width="25%" />
         </a>
-        <h1>History Geek</h1>
+        
 </header>
     
 

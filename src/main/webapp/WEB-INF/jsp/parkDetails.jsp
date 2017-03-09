@@ -7,23 +7,20 @@
 <br>
 <c:url var="imagesrc" value="img/parks/${park.parkCodeLowerCase}.jpg" />
 <img src="${imagesrc}" width="50%" height="50%">
-<br>
+<br><br>
 ${park.quote}
 <br>
 ${park.quoteSource}
-<br>
+<br><br>
 
-<p>The ${park.parkName} is located in the state of ${park.state} and
+<p>The ${park.parkName} which sometimes goes by the Park Code ${park.parkCode}, is located in the state of ${park.state} and
 	was founded in ${park.yearFounded}. The total accreage is
 	${park.acreage} with an elevation of ${park.elevation}, and a total of
-	${park.milesOfTrail} miles of trails meanandering through this National
+	${park.milesOfTrail} miles of trails meandering through this National
 	Park. You can see upwards of ${park.numberOfAnimalSpecies} animal
-	species in a climate that can be described as ${park.climate}.</p>
+	species in a climate that can be described as ${park.climate}.  The entry fee
+	into this park is $${park.entryFee} and the ${park.parkName} has a total of ${park.numberOfCampsites} campsites. </p>
 <p>${park.description}</p>
-<ul>
-	<li>Number of Campsites: ${park.numberOfCampsites}</li>
-	<li>Entry Fee: $ ${park.entryFee}</li>
-</ul>
 
 <div>
 	<c:url value="/parkDetails" var="SubmitTempUrl" />
@@ -35,21 +32,45 @@ ${park.quoteSource}
 			<input type="submit" value="Submit">
 		</select>
 	</form>
-	<table>
-		<c:forEach var="weather" items="${weather}">
-			<c:choose>
-			<c:when test="${Temp == 'Fahrenheit'}">
+	<c:if test = "${weather.get(0).forecast == snow}">
+		<p>It will be snowy today, please pack snow shoes.</p></c:if>
+	<c:if test = "${weather.get(0).forecast == rain}">
+		<p>It will rain today, please pack rain gear and waterproof shoes.</p></c:if>
+	<c:if test = "${weather.get(0).forecast == thunderstorms}">
+		<p>There will be thunderstorms today, please seek shelter and avoid high ridges.</p></c:if>
+	<c:if test = "${weather.get(0).forecast == sunny}">
+		<p>It will be sunny today, please pack sunblock.</p></c:if>
+		
+	<c:if test = "${weather.get(0).high > 75}">
+		<p>It will be hot today, please pack an extra gallon of water.</p></c:if>
+	<c:if test = "${weather.get(0).high - weather.get(0).low >= 20}">
+		<p>There will be a large difference between the high and low temperatures today, please be sure to wear breathable layers!</p></c:if>
+	<c:if test = "${weather.get(0).high - weather.get(0).low <= 20}">
+		<p>It will be very cold today, please take precautionary measures.</p></c:if>
+
+		
+	<c:choose>
+		<c:when test="${Temp == 'Fahrenheit'}">
+			<table>
 				<tr>
-					<td>${weather.dayOfWeek}</td>					
+					<c:forEach var="weather" items="${weather}">
+					<td><h2>${weather.dayOfWeek}</h2></td>	
+					</c:forEach>
 				</tr>
 				<tr>
-				<c:url var="forecastImage" value="img/weather/${weather.forecast}.png" />
-				<td><img src="${forecastImage}" /></td>
+					<c:forEach var="weather" items="${weather}">
+					<c:url var="forecastImage" value="img/weather/${weather.forecast}.png" />	
+					<td><img src="${forecastImage}" height="50%" width="50%"/></td>
+					</c:forEach>
 				</tr>
-				</c:when>
-			</c:choose>
-		</c:forEach>
-	</table>
+				<tr>
+					<c:forEach var="forecast" items="${weather}">
+					<td><h2>${forecast.forecast}</h2></td>	
+					</c:forEach>
+				</tr>
+			</table>
+		</c:when>
+	</c:choose>
 </div>
 
 
