@@ -106,7 +106,7 @@ ${park.quoteSource}
 		<p>It will be hot today, please pack an extra gallon of water.</p></c:if>
 	<c:if test = "${weather.get(0).high - weather.get(0).low >= 20}">
 		<p>There will be a large difference between the high and low temperatures today, please be sure to wear breathable layers!</p></c:if>
-	<c:if test = "${weather.get(0).high - weather.get(0).low <= 20}">
+	<c:if test = "${weather.get(0).low <= 20}">
 		<p>It will be very cold today, please take precautionary measures.</p></c:if>
 </div>
 
