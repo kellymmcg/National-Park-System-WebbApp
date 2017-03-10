@@ -59,18 +59,28 @@ public class npGeekController {
 	}	
 	
 	@RequestMapping(path="/surveyInputPage", method=RequestMethod.GET)
-	public String completeSurvey(ModelMap modelMap) {
+	public String completeSurvey() {
 	return "/surveyInputPage";
 	}
 	
 	@RequestMapping(path="/surveyInputPage", method=RequestMethod.POST)
-	public String viewSurvey(@RequestParam String parkCode,
+		public String viewSurvey(@RequestParam String parkCode,
 											@RequestParam String emailAddress,
 											@RequestParam String state,
-											@RequestParam String activityLevel,
-											ModelMap modelMap) {
-		surveyDAO.setSurveyInformation( parkCode,  emailAddress,  state,  activityLevel);
-		
+											@RequestParam String activityLevel
+											) {
+		Survey survey = new Survey();
+		survey.setParkCode(parkCode);
+		survey.setEmailAddress(emailAddress);
+		survey.setState(state);
+		survey.setActivityLevel(activityLevel);
+		surveyDAO.setSurveyInformation(survey);
 		return "redirect:/surveyResultsPage";
 	}
+	
+	@RequestMapping("/surveyResultsPage")
+		public String displayResultsPage() {
+			return "surveyResultsPage";
+		}
+	
 }

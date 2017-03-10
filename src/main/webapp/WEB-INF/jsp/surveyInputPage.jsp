@@ -2,8 +2,8 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 <h2>Take our daily survey!</h2>
 
-<c:url var="formAction" value="/surveyResultsPage" />
-<form method="GET" action="${formAction}">
+<c:url var="formAction" value="/surveyInputPage" />
+<form method="POST" action="${formAction}">
 	<div class="emailAddress">
 		<label for="emailAddress">E-Mail Addresss:</label> <input type="text"
 			name="emailAddress" id="emailAddress" />

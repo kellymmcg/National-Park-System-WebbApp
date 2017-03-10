@@ -2,13 +2,13 @@ package com.techelevator.npgeek.model;
 
 public class Survey {
 
-	private int surveyId;
+	private Long surveyId;
 	private String parkCode;
 	private String emailAddress;
 	private String state;
 	private String activityLevel;
 
-	public int getSurveyId() {
+	public Long getSurveyId() {
 		return surveyId;
 	}
 
@@ -20,7 +20,7 @@ public class Survey {
 		return emailAddress;
 	}
 
-	public void setSurveyId(int surveyId) {
+	public void setSurveyId(Long surveyId) {
 		this.surveyId = surveyId;
 	}
 

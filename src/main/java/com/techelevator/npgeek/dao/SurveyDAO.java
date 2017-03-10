@@ -7,5 +7,5 @@ import com.techelevator.npgeek.model.Survey;
 public interface SurveyDAO {
 
 	List<Survey> getSurveyByParkCode();
-	void setSurveyInformation(String parkCode, String emailAddress, String state, String activityLevel);
+	void setSurveyInformation(Survey survey);
 }
