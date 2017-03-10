@@ -46,10 +46,10 @@ public class npGeekController {
 		List<Weather> weather = weatherDAO.getForecastFromParkCode(parkCode);
 		if (temp == null) {
 		temp = "Fahrenheit";	
-		}else if (temp == "Celcius"){
-			temp = "Celcius";
-		}else if (temp == "Fahrenheit"){
-			temp = "Fahrenheit";
+//		}else if (temp == "Celcius"){
+//			temp = "Celcius";
+//		}else if (temp == "Fahrenheit"){
+//			temp = "Fahrenheit";
 		}
 		modelMap.addAttribute("Temp", temp);
 		modelMap.addAttribute("park", park);
@@ -74,12 +74,14 @@ public class npGeekController {
 		survey.setEmailAddress(emailAddress);
 		survey.setState(state);
 		survey.setActivityLevel(activityLevel);
-		surveyDAO.setSurveyInformation(survey);
+		surveyDAO.saveSurveyToDatabase(survey);
 		return "redirect:/surveyResultsPage";
 	}
 	
 	@RequestMapping("/surveyResultsPage")
-		public String displayResultsPage() {
+		public String displayResultsPage(ModelMap model) {
+		List<Survey> allSurveys = surveyDAO.getSurveyParkRankings();
+		model.addAttribute("surveys", allSurveys);
 			return "surveyResultsPage";
 		}
 	

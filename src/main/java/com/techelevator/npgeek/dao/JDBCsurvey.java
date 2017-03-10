@@ -23,9 +23,9 @@ public class JDBCsurvey implements SurveyDAO {
 	}
 	
 	@Override
-	public List<Survey> getSurveyByParkCode() {
+	public List<Survey> getAllSurveys() {
 		List<Survey> survey = new ArrayList<>();
-		String sqlSelectSurvey = "SELECT * FROM SURVEY_RESULTS ";
+		String sqlSelectSurvey = "SELECT * FROM SURVEY_RESULT";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectSurvey);
 		while (results.next()) {
 			survey.add(mapRowToSurvey(results));
@@ -34,7 +34,20 @@ public class JDBCsurvey implements SurveyDAO {
 	}
 	
 	@Override
-	public void setSurveyInformation(Survey survey) {
+	public List<Survey> getSurveyParkRankings() {
+		List<Survey> survey = new ArrayList<>();
+		String sqlSelectSurvey = "SELECT COUNT(*) AS parkcount, park.parkname FROM survey_result "
+				+"JOIN park ON (park.parkcode = survey_result.parkcode) "
+				+"GROUP BY park.parkcode ORDER BY parkcount DESC";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectSurvey);
+		while (results.next()) {
+			survey.add(mapRowToSurvey(results));
+			}
+		return survey;
+	}
+	
+	@Override
+	public void saveSurveyToDatabase(Survey survey) {
 		Long id = getNextId();
 		String sqlSetSurvey = "INSERT INTO survey_result (surveyid, parkcode, emailaddress, state, activitylevel) VALUES(?,?,?,?,?)";
 		jdbcTemplate.update(sqlSetSurvey, id, survey.getParkCode(), survey.getEmailAddress(),  survey.getState(),  survey.getActivityLevel());
@@ -43,11 +56,13 @@ public class JDBCsurvey implements SurveyDAO {
 
 	private Survey mapRowToSurvey(SqlRowSet row) {
 			Survey survey = new Survey();
-			survey.setSurveyId(row.getLong("surveyid"));
-			survey.setParkCode(row.getString("parkcode"));
-			survey.setEmailAddress(row.getString("emailaddress"));
-			survey.setState(row.getString("state"));
-			survey.setActivityLevel(row.getString("activitylevel"));
+//			survey.setSurveyId(row.getLong("surveyid"));
+//			survey.setParkCode(row.getString("parkcode"));
+			survey.setParkName(row.getString("parkname"));
+//			survey.setEmailAddress(row.getString("emailaddress"));
+//			survey.setState(row.getString("state"));
+//			survey.setActivityLevel(row.getString("activitylevel"));
+			survey.setParkCount(row.getInt("parkcount"));
 			
 			return survey;
 	}

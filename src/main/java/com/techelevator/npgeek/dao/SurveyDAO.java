@@ -6,6 +6,7 @@ import com.techelevator.npgeek.model.Survey;
 
 public interface SurveyDAO {
 
-	List<Survey> getSurveyByParkCode();
-	void setSurveyInformation(Survey survey);
+	List<Survey> getAllSurveys();
+	List<Survey> getSurveyParkRankings();
+	void saveSurveyToDatabase(Survey survey);
 }

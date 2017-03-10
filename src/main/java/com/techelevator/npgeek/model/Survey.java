@@ -7,6 +7,16 @@ public class Survey {
 	private String emailAddress;
 	private String state;
 	private String activityLevel;
+	private int parkCount;
+	private String parkName;
+	
+	public String getParkName() {
+		return parkName;
+	}
+	
+	public void setParkName(String parkName) {
+		this.parkName = parkName;
+	}
 
 	public Long getSurveyId() {
 		return surveyId;
@@ -46,5 +56,12 @@ public class Survey {
 
 	public String getActivityLevel() {
 		return activityLevel;
+	}
+	public int getParkCount() {
+		return parkCount;
+	}
+	
+	public void setParkCount(int parkCount) {
+		this.parkCount = parkCount;
 	}
 }
