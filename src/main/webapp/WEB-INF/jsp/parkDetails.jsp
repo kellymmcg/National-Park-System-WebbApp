@@ -94,23 +94,24 @@
 			</table>
 		</c:when>
 	</c:choose>
-	<b>
+	
 	<div class="iftest">
-		<c:if test = "${weather.get(0).forecast == snow}">
-			<p>It will be snowy today, please pack snow shoes.</p></c:if>
-		<c:if test = "${weather.get(0).forecast == rain}">
-			<p>It will rain today, please pack rain gear and waterproof shoes.</p></c:if>
-		<c:if test = "${weather.get(0).forecast == thunderstorms}">
-			<p>There will be thunderstorms today, please seek shelter and avoid high ridges.</p></c:if>
-		<c:if test = "${weather.get(0).forecast == sunny}">
-			<p>It will be sunny today, please pack sunblock.</p></c:if>	
-		<c:if test = "${weather.get(0).high > 75}">
-			<p>It will be hot today, please pack an extra gallon of water.</p></c:if>
-		<c:if test = "${weather.get(0).high - weather.get(0).low >= 20}">
-			<p>There will be a large difference between the high and low temperatures today, please be sure to wear breathable layers!</p></c:if>
-		<c:if test = "${weather.get(0).high - weather.get(0).low <= 20}">
-			<p>It will be very cold today, please take precautionary measures.</p></c:if>
-		</b>
+<b>
+	<c:if test = "${weather.get(0).forecast == snow}">
+		<p>It will be snowy today, please pack snow shoes.</p></c:if>
+	<c:if test = "${weather.get(0).forecast == rain}">
+		<p>It will rain today, please pack rain gear and waterproof shoes.</p></c:if>
+	<c:if test = "${weather.get(0).forecast == thunderstorms}">
+		<p>There will be thunderstorms today, please seek shelter and avoid high ridges.</p></c:if>
+	<c:if test = "${weather.get(0).forecast == sunny}">
+		<p>It will be sunny today, please pack sunblock.</p></c:if>
+		
+	<c:if test = "${weather.get(0).high > 75}">
+		<p>It will be hot today, please pack an extra gallon of water.</p></c:if>
+	<c:if test = "${weather.get(0).high - weather.get(0).low >= 20}">
+		<p>There will be a large difference between the high and low temperatures today, please be sure to wear breathable layers!</p></c:if>
+	<c:if test = "${weather.get(0).low <= 20}">
+		<p>It will be very cold today, please take precautionary measures.</p></c:if></b>
 	</div>
 </div>
 
