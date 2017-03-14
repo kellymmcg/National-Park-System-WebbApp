@@ -25,15 +25,7 @@
 		<p>${park.description}</p>
 	</div>
 <div>
-	<c:url value="/parkDetails" var="SubmitTempUrl" />
-	<form action="${SubmitTempUrl}" method="GET">
-		<input type="hidden" value="${park.parkCode}" name="parkCode"
-			id="parkCode"> <select name="Temp">
-			<option value="Celsius">Celsius</option>
-			<option value="Fahrenheit" selected>Fahrenheit</option>
-			<input type="submit" value="Submit">
-		</select>
-	</form>
+
 	
 	<c:choose>
 		<c:when test="${Temp == 'Fahrenheit'}">
@@ -45,8 +37,14 @@
 				</tr>
 				<tr>
 					<c:forEach var="weather" items="${weather}">
-					<c:url var="forecastImage" value="img/weather/${weather.forecast}.png" />	
-					<td><img src="${forecastImage}" height="50%" width="50%"/></td>
+					
+					<td><div class="container">
+							<div class="${weather.forecast}"></div>
+						</div>
+					</td>
+					
+<%-- 					<c:url var="forecastImage" value="img/weather/${weather.forecast}.png" />	 --%>
+					<%-- <td><img src="${forecastImage}" height="50%" width="50%"/></td> --%>
 					</c:forEach>
 				</tr>
 				<tr>
@@ -75,8 +73,14 @@
 				</tr>
 				<tr>
 					<c:forEach var="weather" items="${weather}">
-					<c:url var="forecastImage" value="img/weather/${weather.forecast}.png" />	
-					<td><img src="${forecastImage}" height="50%" width="50%"/></td>
+					
+					<td><div class="container">
+							<div class="${weather.forecast}"></div>
+						</div>
+					</td>
+					
+					<%-- <c:url var="forecastImage" value="img/weather/${weather.forecast}.png" />	
+					<td><img src="${forecastImage}" height="50%" width="50%"/></td> --%>
 					</c:forEach>
 				</tr>
 				<tr>
@@ -94,6 +98,16 @@
 			</table>
 		</c:when>
 	</c:choose>
+	
+	<c:url value="/parkDetails" var="SubmitTempUrl" />
+	<form action="${SubmitTempUrl}" method="GET" class="weather-dropdown">
+		<input type="hidden" value="${park.parkCode}" name="parkCode"
+			id="parkCode"> <select name="Temp">
+			<option value="Celsius">Celsius</option>
+			<option value="Fahrenheit" selected>Fahrenheit</option>
+			<input type="submit" value="Submit">
+		</select>
+	</form>
 	
 	<div class="iftest">
 <b>
